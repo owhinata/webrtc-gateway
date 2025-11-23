@@ -1,0 +1,28 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UdpRtpGateway", "UdpRtpGateway\UdpRtpGateway.csproj", "{022A19D2-D165-40EB-B07F-86B5EB22DAD8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RtpClientSipsorcery", "RtpClientSipsorcery\RtpClientSipsorcery.csproj", "{01BF61B2-FF5D-4926-8A64-35B91A0D83BD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{022A19D2-D165-40EB-B07F-86B5EB22DAD8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{022A19D2-D165-40EB-B07F-86B5EB22DAD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{022A19D2-D165-40EB-B07F-86B5EB22DAD8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{022A19D2-D165-40EB-B07F-86B5EB22DAD8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01BF61B2-FF5D-4926-8A64-35B91A0D83BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01BF61B2-FF5D-4926-8A64-35B91A0D83BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01BF61B2-FF5D-4926-8A64-35B91A0D83BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01BF61B2-FF5D-4926-8A64-35B91A0D83BD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
