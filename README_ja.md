@@ -17,6 +17,12 @@ MPEG-TS → H.264 RTP変換ゲートウェイ
 - **用途**: MPEG-TSストリーム（例: 放送）をRTPに変換
 - **機能**: TSデマックス、PES組み立て、H.264パース、RFC 6184 RTPパケット化
 
+### [RtpViewerSipsorcery](docs/RtpViewerSipsorcery_ja.md)
+ffplay統合のSIPSorceryベースRTPビューア
+- **入力**: ゲートウェイからのH.264 RTPユニキャスト (port 5006)
+- **出力**: ffplayによるライブビデオ表示
+- **機能**: SDP Offer/Answer交換、FIFOベースストリーミング、NALユニット処理
+
 ### RtpClientSipsorcery
 ゲートウェイテスト用のSIPSorceryベースRTPクライアント
 - HTTP経由でSDP Offerを送信
@@ -90,6 +96,7 @@ cvlc screen:// --screen-fps=60 \
 
 - [UdpRtpGateway ドキュメント](docs/UdpRtpGateway_ja.md)
 - [MpegTsRtpGateway ドキュメント](docs/MpegTsRtpGateway_ja.md)
+- [RtpViewerSipsorcery ドキュメント](docs/RtpViewerSipsorcery_ja.md)
 
 ## パフォーマンス
 

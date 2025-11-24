@@ -100,7 +100,7 @@ public class H264RtpPacker
             byte fuHeader = nalType;
             if (first)
                 fuHeader |= 0x80; // Start bit
-            if (lastFragment && isLastNalOfAu)
+            if (lastFragment)
                 fuHeader |= 0x40; // End bit
 
             ushort seq = _seq++;

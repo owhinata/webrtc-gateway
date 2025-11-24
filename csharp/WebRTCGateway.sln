@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RtpClientSipsorcery", "RtpC
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MpegTsRtpGateway", "MpegTsRtpGateway\MpegTsRtpGateway.csproj", "{A5013857-82AE-46F9-AA67-FB49C7FE9035}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RtpViewerSipsorcery", "RtpViewerSipsorcery\RtpViewerSipsorcery.csproj", "{63655968-F350-454B-B19A-BC883A785508}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{A5013857-82AE-46F9-AA67-FB49C7FE9035}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A5013857-82AE-46F9-AA67-FB49C7FE9035}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A5013857-82AE-46F9-AA67-FB49C7FE9035}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63655968-F350-454B-B19A-BC883A785508}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63655968-F350-454B-B19A-BC883A785508}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63655968-F350-454B-B19A-BC883A785508}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63655968-F350-454B-B19A-BC883A785508}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

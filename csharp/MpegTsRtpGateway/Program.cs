@@ -62,6 +62,28 @@ class Program
                     var nalus = nalParser.ParseAnnexBNalus(pesPayload).ToList();
                     if (nalus.Count > 0)
                     {
+                        // Debug: Log NAL types in this access unit
+                        var nalTypes = nalus
+                            .Select(n => n.Length > 0 ? (n[0] & 0x1F) : -1)
+                            .ToList();
+                        var nalTypeNames = nalTypes
+                            .Select(t =>
+                                t switch
+                                {
+                                    1 => "Non-IDR",
+                                    5 => "IDR",
+                                    6 => "SEI",
+                                    7 => "SPS",
+                                    8 => "PPS",
+                                    9 => "AUD",
+                                    _ => $"Type{t}",
+                                }
+                            )
+                            .ToList();
+                        Console.WriteLine(
+                            $"[AU] PTS={pts90k}, NALs={nalus.Count}: {string.Join(", ", nalTypeNames)}"
+                        );
+
                         rtpPacker.SendAccessUnit(nalus, pts90k);
                     }
                 };

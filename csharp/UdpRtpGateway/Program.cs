@@ -122,7 +122,6 @@ async Task RunMulticastReceiver(
     CancellationToken ct
 )
 {
-    var packetCount = 0;
     Console.WriteLine("Multicast receiver started");
 
     try
@@ -130,24 +129,92 @@ async Task RunMulticastReceiver(
         while (!ct.IsCancellationRequested)
         {
             var result = await multicastClient.ReceiveAsync(ct);
-            packetCount++;
 
-            if (packetCount % 100 == 0)
-            {
-                Console.WriteLine($"Received {packetCount} RTP packets from multicast");
-            }
-
-            // Relay to all registered clients
-            await RelayRtpPacket(result.Buffer, sendClient);
+            // Process and relay RTP packet
+            await ProcessAndRelayRtpPacket(result.Buffer, sendClient);
         }
     }
     catch (OperationCanceledException)
     {
-        Console.WriteLine($"Multicast receiver stopped. Total packets received: {packetCount}");
+        Console.WriteLine("Multicast receiver stopped.");
     }
     catch (Exception ex)
     {
         Console.WriteLine($"Multicast receiver error: {ex.Message}");
+    }
+}
+
+/// <summary>
+/// Processes RTP packet and relays to clients
+/// </summary>
+/// <param name="rtpPacket">RTP packet data</param>
+/// <param name="sendClient">UDP client for sending</param>
+async Task ProcessAndRelayRtpPacket(byte[] rtpPacket, UdpClient sendClient)
+{
+    // Parse and log RTP packet info
+    LogRtpPacket(rtpPacket);
+
+    // Simply relay the packet as-is
+    await RelayRtpPacket(rtpPacket, sendClient);
+}
+
+/// <summary>
+/// Logs RTP packet information including NAL type
+/// </summary>
+/// <param name="rtpPacket">RTP packet data</param>
+void LogRtpPacket(byte[] rtpPacket)
+{
+    try
+    {
+        if (rtpPacket.Length < 12)
+            return;
+
+        // Parse RTP header (simplified)
+        // byte 0: V(2), P(1), X(1), CC(4)
+        // byte 1: M(1), PT(7)
+        // bytes 2-3: Sequence number
+        // bytes 4-7: Timestamp
+        // bytes 8-11: SSRC
+
+        int cc = rtpPacket[0] & 0x0F; // CSRC count
+        int headerSize = 12 + (cc * 4);
+
+        if (rtpPacket.Length <= headerSize)
+            return;
+
+        uint timestamp = (uint)(
+            (rtpPacket[4] << 24) | (rtpPacket[5] << 16) | (rtpPacket[6] << 8) | rtpPacket[7]
+        );
+        ushort sequenceNumber = (ushort)((rtpPacket[2] << 8) | rtpPacket[3]);
+
+        // Get payload (NAL unit)
+        byte[] payload = rtpPacket[headerSize..];
+        if (payload.Length == 0)
+            return;
+
+        byte nalHeader = payload[0];
+        byte nalType = (byte)(nalHeader & 0x1F);
+
+        string nalTypeName = nalType switch
+        {
+            1 => "Non-IDR",
+            5 => "IDR",
+            6 => "SEI",
+            7 => "SPS",
+            8 => "PPS",
+            9 => "AUD",
+            24 => "STAP-A",
+            28 => "FU-A",
+            _ => $"Type{nalType}",
+        };
+
+        Console.WriteLine(
+            $"[Gateway] Seq={sequenceNumber}, TS={timestamp}, NAL={nalType} ({nalTypeName}), Size={payload.Length}"
+        );
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Error parsing RTP packet: {ex.Message}");
     }
 }
 

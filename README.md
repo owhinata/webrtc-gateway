@@ -17,6 +17,12 @@ MPEG-TS to H.264 RTP conversion gateway.
 - **Use case**: Convert MPEG-TS streams (e.g., from broadcast) to RTP
 - **Features**: TS demuxing, PES assembly, H.264 parsing, RFC 6184 RTP packetization
 
+### [RtpViewerSipsorcery](docs/RtpViewerSipsorcery.md)
+SIPSorcery-based RTP viewer with ffplay integration.
+- **Input**: H.264 RTP unicast from gateway (port 5006)
+- **Output**: Live video display using ffplay
+- **Features**: SDP Offer/Answer exchange, FIFO-based streaming, NAL unit handling
+
 ### RtpClientSipsorcery
 SIPSorcery-based RTP client for testing gateways.
 - Sends SDP Offer via HTTP
@@ -90,6 +96,7 @@ cvlc screen:// --screen-fps=60 \
 
 - [UdpRtpGateway Documentation](docs/UdpRtpGateway.md)
 - [MpegTsRtpGateway Documentation](docs/MpegTsRtpGateway.md)
+- [RtpViewerSipsorcery Documentation](docs/RtpViewerSipsorcery.md)
 
 ## Performance
 
