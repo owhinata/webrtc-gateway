@@ -1,0 +1,26 @@
+[MASTER]
+ignore=.git,__pycache__,.venv,venv,env,build,dist
+jobs=1
+
+[MESSAGES CONTROL]
+disable=
+    missing-module-docstring,
+    missing-class-docstring,
+    missing-function-docstring,
+    too-few-public-methods,
+    too-many-instance-attributes,
+    too-many-arguments,
+    too-many-locals,
+    invalid-name,
+    protected-access
+
+[FORMAT]
+max-line-length=100
+indent-string='    '
+
+[BASIC]
+good-names=i,j,k,ex,pc,ip,_
+
+[DESIGN]
+max-args=8
+max-attributes=12

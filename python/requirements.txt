@@ -1,0 +1,15 @@
+# WebRTC and RTP support
+aiortc>=1.9.0
+
+# HTTP server/client
+aiohttp>=3.10.0
+
+# Async support
+asyncio-dgram>=2.2.0
+
+# Development dependencies
+black>=24.0.0
+flake8>=7.0.0
+mypy>=1.8.0
+pylint>=3.0.0
+isort>=5.13.0
